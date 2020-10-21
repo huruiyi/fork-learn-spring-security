@@ -1,14 +1,17 @@
 package com.baeldung.lss.web.controller;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -70,4 +73,33 @@ public class UserController {
         return new ModelAndView("users/form", "user", user);
     }
 
+    /**************************************************************/
+    @Secured("ROLE_USER")
+    @RequestMapping(value = "/u1")
+    @ResponseBody
+    public String u1() {
+        return "u1..........";
+    }
+
+
+    @RolesAllowed("ROLE_USER")
+    @RequestMapping(value = "/u2")
+    @ResponseBody
+    public String u2() {
+        return "u2..........";
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @RequestMapping("/test")
+    @ResponseBody
+    public String test() {
+        return "TEST @PreAuthorize注解";
+    }
+
+    //@PostAuthorize()
+    //@PostFilter()
+
+    //@PreAuthorize()
+    //@PreFilter()
+    /**************************************************************/
 }
