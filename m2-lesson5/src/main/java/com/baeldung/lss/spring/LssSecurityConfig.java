@@ -22,17 +22,15 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         super();
     }
 
-    //
-
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    } // @formatter:on
+    }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception { // @formatter:off
+    protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/signup",
                         "/user/register",
                         "/registrationConfirm*",
@@ -43,18 +41,18 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/user/savePassword*").permitAll()
                 .anyRequest().authenticated()
 
-        .and()
-        .formLogin().
-            loginPage("/login").permitAll().
-            loginProcessingUrl("/doLogin")
+                .and()
+                .formLogin().
+                loginPage("/login").permitAll().
+                loginProcessingUrl("/doLogin")
 
-        .and()
-        .logout().permitAll().logoutUrl("/logout")
+                .and()
+                .logout().permitAll().logoutUrl("/logout")
 
-        .and()
-        .csrf().disable()
+                .and()
+                .csrf().disable()
         ;
-    } // @formatter:on
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

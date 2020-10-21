@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class LssApp7 {
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(new Class[] { LssApp7.class, LssSecurityConfig.class, LssWebMvcConfiguration.class }, args);
+        SpringApplication.run(new Class[]{LssApp7.class, LssSecurityConfig.class, LssWebMvcConfiguration.class}, args);
     }
 
 }

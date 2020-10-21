@@ -24,8 +24,6 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     @Autowired
     private Environment env;
 
-    // API
-
     @Override
     public void onApplicationEvent(final OnRegistrationCompleteEvent event) {
         this.confirmRegistration(event);
@@ -41,17 +39,16 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         mailSender.send(email);
     }
 
-    //
-
     private SimpleMailMessage constructEmailMessage(final OnRegistrationCompleteEvent event, final User user, final String token) {
         final String recipientAddress = user.getEmail();
         final String subject = "Registration Confirmation";
         final String confirmationUrl = event.getAppUrl() + "/registrationConfirm?token=" + token;
         final SimpleMailMessage email = new SimpleMailMessage();
+
+        email.setFrom(env.getProperty("support.email"));
         email.setTo(recipientAddress);
         email.setSubject(subject);
         email.setText("Please open the following URL to verify your account: \r\n" + confirmationUrl);
-        email.setFrom(env.getProperty("support.email"));
         return email;
     }
 

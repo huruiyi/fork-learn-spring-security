@@ -57,8 +57,6 @@ class RegistrationController {
     @Autowired
     private Environment env;
 
-    // registration
-
     @RequestMapping(value = "signup")
     public ModelAndView registrationForm() {
         final Map<String, Object> model = new HashMap<>();

@@ -25,8 +25,6 @@ class UserService implements IUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    //
-
     @Override
     public User findUserByEmail(final String email) {
         return userRepository.findByEmail(email);

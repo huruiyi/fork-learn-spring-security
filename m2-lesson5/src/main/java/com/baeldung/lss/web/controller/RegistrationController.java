@@ -48,8 +48,6 @@ class RegistrationController {
     @Autowired
     private Environment env;
 
-    // registration
-
     @RequestMapping(value = "signup")
     public ModelAndView registrationForm() {
         return new ModelAndView("registrationPage", "user", new User());
@@ -84,8 +82,8 @@ class RegistrationController {
         final User user = verificationToken.getUser();
         final Calendar cal = Calendar.getInstance();
         if ((verificationToken.getExpiryDate()
-            .getTime()
-            - cal.getTime()
+                .getTime()
+                - cal.getTime()
                 .getTime()) <= 0) {
             redirectAttributes.addFlashAttribute("errorMessage", "Your registration token has expired. Please register again.");
             return new ModelAndView("redirect:/login");
@@ -105,7 +103,7 @@ class RegistrationController {
         final User user = userService.findUserByEmail(userEmail);
         if (user != null) {
             final String token = UUID.randomUUID()
-                .toString();
+                    .toString();
             userService.createPasswordResetTokenForUser(user, token);
             final String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
             final SimpleMailMessage email = constructResetTokenEmail(appUrl, token, user);
@@ -131,8 +129,8 @@ class RegistrationController {
 
         final Calendar cal = Calendar.getInstance();
         if ((passToken.getExpiryDate()
-            .getTime()
-            - cal.getTime()
+                .getTime()
+                - cal.getTime()
                 .getTime()) <= 0) {
             redirectAttributes.addFlashAttribute("errorMessage", "Your password reset token has expired");
             return new ModelAndView("redirect:/login");
