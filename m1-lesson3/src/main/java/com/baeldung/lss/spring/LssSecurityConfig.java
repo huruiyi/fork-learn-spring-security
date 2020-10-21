@@ -17,15 +17,13 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         super();
     }
 
-    //
-
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off 
-        auth.
-            inMemoryAuthentication().passwordEncoder(passwordEncoder()).
-            withUser("user").password(passwordEncoder().encode("pass")).
-            roles("USER");
-    } // @formatter:on
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).
+                withUser("user").
+                password(passwordEncoder().encode("pass")).
+                roles("USER");
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
