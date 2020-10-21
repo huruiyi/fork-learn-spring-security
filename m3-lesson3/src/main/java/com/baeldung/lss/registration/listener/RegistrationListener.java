@@ -24,8 +24,6 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     @Autowired
     private Environment env;
 
-    // API
-
     @Override
     public void onApplicationEvent(final OnRegistrationCompleteEvent event) {
         this.confirmRegistration(event);
@@ -34,14 +32,12 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     private void confirmRegistration(final OnRegistrationCompleteEvent event) {
         final User user = event.getUser();
         final String token = UUID.randomUUID()
-            .toString();
+                .toString();
         service.createVerificationTokenForUser(user, token);
 
         final SimpleMailMessage email = constructEmailMessage(event, user, token);
         mailSender.send(email);
     }
-
-    //
 
     private SimpleMailMessage constructEmailMessage(final OnRegistrationCompleteEvent event, final User user, final String token) {
         final String recipientAddress = user.getEmail();

@@ -71,8 +71,6 @@ class UserController {
         return new ModelAndView("tl/form", "user", user);
     }
 
-    // the form
-
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(@ModelAttribute final User user) {
         return "tl/form";

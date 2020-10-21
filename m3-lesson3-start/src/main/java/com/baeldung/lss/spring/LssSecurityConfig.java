@@ -25,14 +25,14 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     //
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    } // @formatter:on
+    }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception { // @formatter:off
+    protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/signup",
                         "/user/register",
                         "/registrationConfirm*",
@@ -44,23 +44,22 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/js/**").permitAll()
                 .anyRequest().authenticated()
 
-        .and()
-        .formLogin().
-            loginPage("/login").permitAll().
-            loginProcessingUrl("/doLogin")
+                .and()
+                .formLogin().
+                loginPage("/login").permitAll().
+                loginProcessingUrl("/doLogin")
 
-        .and()
-        .rememberMe()
-            .key("lssAppKey")
-            .tokenValiditySeconds(604800) // 1 week = 604800
+                .and()
+                .rememberMe()
+                .key("lssAppKey")
+                .tokenValiditySeconds(604800) // 1 week = 604800
 
-        .and()
-        .logout().permitAll().logoutUrl("/logout")
+                .and()
+                .logout().permitAll().logoutUrl("/logout")
 
-        .and()
-        .csrf().disable()
-        ;
-    } // @formatter:on
+                .and()
+                .csrf().disable();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

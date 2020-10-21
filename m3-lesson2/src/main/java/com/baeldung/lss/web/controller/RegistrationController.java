@@ -49,8 +49,6 @@ class RegistrationController {
     @Autowired
     private Environment env;
 
-    // registration
-
     @RequestMapping(value = "signup")
     public ModelAndView registrationForm() {
         return new ModelAndView("registrationPage", "user", new User());
@@ -160,8 +158,6 @@ class RegistrationController {
         redirectAttributes.addFlashAttribute("message", "Password reset successfully");
         return new ModelAndView("redirect:/login");
     }
-
-    // NON-API
 
     private SimpleMailMessage constructResetTokenEmail(final String contextPath, final String token, final User user) {
         final String url = contextPath + "/user/changePassword?id=" + user.getId() + "&token=" + token;

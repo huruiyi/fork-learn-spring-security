@@ -33,8 +33,6 @@ public class PasswordResetToken {
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
 
-    //
-
     public String getToken() {
         return token;
     }
@@ -64,15 +62,13 @@ public class PasswordResetToken {
         cal.setTimeInMillis(new Date().getTime());
         cal.add(Calendar.MINUTE, expiryTimeInMinutes);
         return new Date(cal.getTime()
-            .getTime());
+                .getTime());
     }
 
     public void updateToken(final String token) {
         this.token = token;
         this.expiryDate = calculateExpiryDate(EXPIRATION);
     }
-
-    //
 
     @Override
     public int hashCode() {
@@ -124,11 +120,11 @@ public class PasswordResetToken {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Token [String=")
-            .append(token)
-            .append("]")
-            .append("[Expires")
-            .append(expiryDate)
-            .append("]");
+                .append(token)
+                .append("]")
+                .append("[Expires")
+                .append(expiryDate)
+                .append("]");
         return builder.toString();
     }
 
