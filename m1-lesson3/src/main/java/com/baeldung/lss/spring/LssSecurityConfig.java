@@ -29,10 +29,9 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-                inMemoryAuthentication().passwordEncoder(passwordEncoder()).
-                withUser("user").password(passwordEncoder().encode("user")).roles("USER")
-                .and().withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN")
+        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).
+                withUser("user").password(passwordEncoder().encode("user")).roles("USER").and().
+                withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN")
         ;
     }
 

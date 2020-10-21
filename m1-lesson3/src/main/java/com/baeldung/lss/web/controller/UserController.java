@@ -14,6 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.access.method.P;
+import org.springframework.data.repository.query.Param;
 
 import com.baeldung.lss.persistence.UserRepository;
 import com.baeldung.lss.web.model.User;
@@ -23,8 +25,6 @@ import com.baeldung.lss.web.model.User;
 public class UserController {
 
     private final UserRepository userRepository;
-
-    //
 
     @Autowired
     public UserController(UserRepository userRepository) {
@@ -89,17 +89,34 @@ public class UserController {
         return "u2..........";
     }
 
+    /**
+     * PreAuthorize:方法执行前权限校验
+     *
+     * @return
+     */
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping("/test")
+    @RequestMapping("/test1")
     @ResponseBody
-    public String test() {
+    public String test1() {
+        //若没有USER权限,方法体不会被执行
         return "TEST @PreAuthorize注解";
     }
 
-    //@PostAuthorize()
+    /**
+     * PostAuthorize:方法执行后被执行
+     *
+     * @return
+     */
+    @PostAuthorize("hasRole('ROLE_USER')")
+    @RequestMapping("/test2")
+    @ResponseBody
+    public String test2() {
+        //若没有USER权限,方法体依旧会被执行
+        return "TEST @PostAuthorize注解";
+    }
+
+    //@PreFilter()
     //@PostFilter()
 
-    //@PreAuthorize()
-    //@PreFilter()
     /**************************************************************/
 }
