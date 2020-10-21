@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 class PathController {
 
-    //
-
     // @RequestMapping("/login")
     // public String list() {
     // return "loginPage";

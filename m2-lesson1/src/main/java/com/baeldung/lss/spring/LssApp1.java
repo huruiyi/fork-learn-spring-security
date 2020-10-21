@@ -14,11 +14,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.baeldung.lss.web.model")
 public class LssApp1 extends SpringBootServletInitializer {
 
-    private final static Class<?>[] CONFIGS = { // @formatter:off
+    private final static Class<?>[] CONFIGS = {
 			LssSecurityConfig.class,
 			LssWebMvcConfiguration.class,           
 			LssApp1.class            
-    }; // // @formatter:on
+    };
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

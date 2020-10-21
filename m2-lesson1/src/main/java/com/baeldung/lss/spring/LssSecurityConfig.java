@@ -18,36 +18,23 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         super();
     }
 
-    //
-
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off 
-        auth.
-            inMemoryAuthentication().passwordEncoder(passwordEncoder()).
-            withUser("user").password(passwordEncoder().encode("pass")).
-            roles("USER");
-    } // @formatter:on
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).
+                withUser("user").password(passwordEncoder().encode("pass")).roles("USER");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception { // @formatter:off
         http
-        .authorizeRequests()
+                .authorizeRequests()
                 .anyRequest().authenticated()
-        
-        .and()
-        .formLogin().
-            loginPage("/login").permitAll().
-            loginProcessingUrl("/doLogin")
-
-        .and()
-        .logout().permitAll().logoutUrl("/logout")
-        
-        .and()
-        .csrf().disable()
-        ;
+                .and().formLogin().loginPage("/login").permitAll().loginProcessingUrl("/doLogin")
+                .and().logout().permitAll().logoutUrl("/logout")
+                .and().csrf().disable();
     }
 
-    @Bean 
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

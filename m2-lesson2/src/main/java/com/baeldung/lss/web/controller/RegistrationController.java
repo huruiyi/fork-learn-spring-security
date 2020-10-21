@@ -19,8 +19,6 @@ class RegistrationController {
     @Autowired
     private IUserService userService;
 
-    //
-
     @RequestMapping(value = "signup")
     public ModelAndView registrationForm() {
         return new ModelAndView("registrationPage", "user", new User());

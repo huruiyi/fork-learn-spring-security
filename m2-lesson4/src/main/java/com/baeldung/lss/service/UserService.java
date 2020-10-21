@@ -24,8 +24,6 @@ class UserService implements IUserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    
-    //
 
     @Override
     public User findUserByEmail(final String email) {
@@ -57,8 +55,6 @@ class UserService implements IUserService {
         userRepository.save(user);
     }
 
-    //
-
     private boolean emailExist(final String email) {
         final User user = userRepository.findByEmail(email);
         return user != null;
@@ -69,10 +65,10 @@ class UserService implements IUserService {
         final Long id = user.getId();
         final String email = user.getEmail();
         final User emailOwner = userRepository.findByEmail(email);
-   
+
         if (emailOwner != null && !id.equals(emailOwner.getId())) {
             throw new EmailExistsException("Email not available.");
-        }   
+        }
         if (user.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }

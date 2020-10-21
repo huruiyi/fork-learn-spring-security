@@ -57,8 +57,6 @@ class RegistrationController {
     @Autowired
     private Environment env;
 
-    // registration
-
     @RequestMapping(value = "signup")
     public ModelAndView registrationForm() {
         final Map<String, Object> model = new HashMap<>();
@@ -117,8 +115,6 @@ class RegistrationController {
         redirectAttributes.addFlashAttribute("message", "Your account verified successfully");
         return new ModelAndView("redirect:/login");
     }
-
-    // password reset
 
     @RequestMapping(value = "/user/resetPassword", method = RequestMethod.POST)
     @ResponseBody
