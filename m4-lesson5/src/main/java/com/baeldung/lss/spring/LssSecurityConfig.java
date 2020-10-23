@@ -11,9 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-@ComponentScan({ "com.baeldung.lss.security" })
+@ComponentScan({"com.baeldung.lss.security"})
 @EnableWebSecurity
 public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -24,33 +25,29 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         super();
     }
 
-    //
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {// @formatter:off
+    protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/signup", "/user/register").permitAll()
                 .antMatchers("/user/delete/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
-        .and()
-        .formLogin().
-            loginPage("/login").permitAll().
-            loginProcessingUrl("/doLogin")
+                .and()
+                .formLogin().
+                loginPage("/login").permitAll().
+                loginProcessingUrl("/doLogin")
 
-        .and()
-        .logout().permitAll().logoutUrl("/logout")
+                .and()
+                .logout().permitAll().logoutUrl("/logout")
 
-        .and()
-        .csrf().disable()
-        ;
-    } // @formatter:on
+                .and()
+                .csrf().disable();
+    }
 
 }
