@@ -7,19 +7,23 @@
 
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <a class="brand" href="/"> Home </a>
-                <ul class="nav">
-                    <li><a href="${pageContext.request.contextPath}/user"> Users </a></li>
-                </ul>
-                <ul class="nav pull-right">
-                    <li><a href="${pageContext.request.contextPath}/logout" class="menu-right" > Logout </a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Content goes here -->
-    </div>
+	<div class="container">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<a class="brand" href="/"> Home </a>
+				<ul class="nav">
+					<li>
+						<a href="${pageContext.request.contextPath}/user"> Users </a>
+					</li>
+				</ul>
+				<ul class="nav pull-right">
+					<li>
+						<a href="${pageContext.request.contextPath}/logout" class="menu-right"> Logout </a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Content goes here -->
+	</div>
 </body>
 </html>

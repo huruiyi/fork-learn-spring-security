@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.baeldung.lss.web.model")
 public class LssApp3 {
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(new Class[] { LssApp3.class, LssSecurityConfig.class, LssWebMvcConfiguration.class }, args);
-    }
+	public static void main(String[] args) throws Exception {
+		SpringApplication.run(new Class[] { LssApp3.class, LssSecurityConfig.class, LssWebMvcConfiguration.class }, args);
+	}
 
 }

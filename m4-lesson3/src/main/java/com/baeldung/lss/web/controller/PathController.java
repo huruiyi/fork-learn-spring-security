@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 class PathController {
 
-    @RequestMapping("/")
-    public String home() {
-        return "redirect:/user";
-    }
+	@RequestMapping("/")
+	public String home() {
+		return "redirect:/user";
+	}
 
 }

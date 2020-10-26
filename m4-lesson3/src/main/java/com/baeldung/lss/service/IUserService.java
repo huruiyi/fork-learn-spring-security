@@ -5,7 +5,7 @@ import com.baeldung.lss.web.model.User;
 
 public interface IUserService {
 
-    User registerNewUser(User user) throws EmailExistsException;
+	User registerNewUser(User user) throws EmailExistsException;
 
-    User updateExistingUser(User user) throws EmailExistsException;
+	User updateExistingUser(User user) throws EmailExistsException;
 }
