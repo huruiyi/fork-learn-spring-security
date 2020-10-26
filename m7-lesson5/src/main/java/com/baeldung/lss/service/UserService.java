@@ -20,14 +20,10 @@ class UserService implements IUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // read
-
     @Override
     public User findUserByEmail(final String email) {
         return userRepository.findByEmail(email);
     }
-
-    // write
 
     @Override
     public User registerNewUser(final User user) throws EmailExistsException {

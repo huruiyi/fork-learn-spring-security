@@ -9,10 +9,12 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
+
     @Override
     protected RunAsManager runAsManager() {
         final RunAsManagerImpl runAsManager = new RunAsManagerImpl();
         runAsManager.setKey("MyRunAsKey");
         return runAsManager;
     }
+
 }

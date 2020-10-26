@@ -33,8 +33,6 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         super();
     }
 
-    //
-
     @PostConstruct
     private void saveTestUser() {
         final User user = new User();
@@ -44,7 +42,7 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {// @formatter:off
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // auth.authenticationProvider(customAuthenticationProvider);
 
         // final DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
@@ -53,27 +51,27 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.authenticationProvider(daoAuthenticationProvider());
         auth.authenticationProvider(runAsAuthenticationProvider());
-    } // @formatter:on
+    }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {// @formatter:off
+    protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
-                .antMatchers("/badUser*","/js/**").permitAll()
+                .authorizeRequests()
+                .antMatchers("/badUser*", "/js/**").permitAll()
                 .anyRequest().authenticated()
 
-        .and()
-        .formLogin().
-            loginPage("/login").permitAll().
-            loginProcessingUrl("/doLogin")
+                .and()
+                .formLogin().
+                loginPage("/login").permitAll().
+                loginProcessingUrl("/doLogin")
 
-        .and()
-        .logout().permitAll().logoutUrl("/logout")
+                .and()
+                .logout().permitAll().logoutUrl("/logout")
 
-        .and()
-        .csrf().disable()
+                .and()
+                .csrf().disable()
         ;
-    } // @formatter:on
+    }
 
     @Bean
     public AuthenticationProvider runAsAuthenticationProvider() {

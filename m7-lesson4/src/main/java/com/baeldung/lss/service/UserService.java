@@ -23,12 +23,9 @@ class UserService implements IUserService {
     @Autowired
     private AsyncBean asyncBean;
 
-    // read
-
     @Override
     public Iterable<User> findAll() {
         asyncBean.asyncCall();
-
         return userRepository.findAll();
     }
 
@@ -36,8 +33,6 @@ class UserService implements IUserService {
     public User findUserByEmail(final String email) {
         return userRepository.findByEmail(email);
     }
-
-    // write
 
     @Override
     public User registerNewUser(final User user) throws EmailExistsException {
