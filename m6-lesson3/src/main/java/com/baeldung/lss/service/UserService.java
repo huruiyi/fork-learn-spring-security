@@ -20,8 +20,6 @@ class UserService implements IUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    //
-
     @Override
     public User registerNewUser(final User user) throws EmailExistsException {
         if (emailExist(user.getEmail())) {
@@ -35,8 +33,6 @@ class UserService implements IUserService {
     public User findUserByEmail(final String email) {
         return userRepository.findByEmail(email);
     }
-
-    //
 
     private boolean emailExist(final String email) {
         final User user = userRepository.findByEmail(email);

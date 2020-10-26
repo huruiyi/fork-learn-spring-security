@@ -31,8 +31,6 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
         super();
     }
 
-    //
-
     @PostConstruct
     private void saveTestUser() {
         final User user = new User();
@@ -42,17 +40,17 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {// @formatter:off
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         authenticationProvider.setUserDetailsService(userDetailsService);
         auth.authenticationProvider(authenticationProvider);
-    } // @formatter:on
+    }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {// @formatter:off
+    protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/signup",
                         "/user/register",
                         "/registrationConfirm*",
@@ -60,18 +58,17 @@ public class LssSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/js/**").permitAll()
                 .anyRequest().authenticated()
 
-        .and()
-        .formLogin().
-            loginPage("/login").permitAll().
-            loginProcessingUrl("/doLogin")
+                .and()
+                .formLogin().
+                loginPage("/login").permitAll().
+                loginProcessingUrl("/doLogin")
 
-        .and()
-        .logout().permitAll().logoutUrl("/logout")
+                .and()
+                .logout().permitAll().logoutUrl("/logout")
 
-        .and()
-        .csrf().disable()
-        ;
-    } // @formatter:on
+                .and()
+                .csrf().disable();
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

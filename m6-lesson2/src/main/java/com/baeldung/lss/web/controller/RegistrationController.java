@@ -36,8 +36,6 @@ class RegistrationController {
     @Autowired
     private Environment env;
 
-    // registration
-
     @RequestMapping(value = "signup")
     public ModelAndView registrationForm() {
         return new ModelAndView("registrationPage", "user", new User());
