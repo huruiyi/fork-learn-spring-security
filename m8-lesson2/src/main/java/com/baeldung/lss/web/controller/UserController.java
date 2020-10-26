@@ -27,8 +27,6 @@ class UserController {
     @Autowired
     private IUserService userService;
 
-    //
-
     @RequestMapping
     public ModelAndView list() {
         Iterable<User> users = this.userRepository.findAll();
@@ -71,8 +69,6 @@ class UserController {
     public ModelAndView modifyForm(@PathVariable("id") final User user) {
         return new ModelAndView("tl/form", "user", user);
     }
-
-    // the form
 
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(@ModelAttribute final User user) {

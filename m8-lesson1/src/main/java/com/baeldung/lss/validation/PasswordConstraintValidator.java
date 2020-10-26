@@ -27,10 +27,9 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
         if (result.isValid()) {
             return true;
         }
+        String message = Joiner.on("\n").join(validator.getMessages(result));
         context.disableDefaultConstraintViolation();
-        context.buildConstraintViolationWithTemplate(Joiner.on("\n")
-            .join(validator.getMessages(result)))
-            .addConstraintViolation();
+        context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
         return false;
     }
 

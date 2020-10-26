@@ -7,6 +7,7 @@ import com.baeldung.lss.persistence.UserRepository;
 import com.baeldung.lss.service.IUserService;
 import com.baeldung.lss.validation.EmailExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -26,8 +27,6 @@ class UserController {
 
     @Autowired
     private IUserService userService;
-
-    //
 
     @RequestMapping
     public ModelAndView list() {
@@ -62,8 +61,7 @@ class UserController {
 
     @RequestMapping(value = "delete/{id}")
     public ModelAndView delete(@PathVariable("id") final Long id) {
-        this.userRepository.findById(id)
-            .ifPresent(user -> this.userRepository.delete(user));
+        this.userRepository.findById(id).ifPresent(user -> this.userRepository.delete(user));
         return new ModelAndView("redirect:/");
     }
 
@@ -71,8 +69,6 @@ class UserController {
     public ModelAndView modifyForm(@PathVariable("id") final User user) {
         return new ModelAndView("tl/form", "user", user);
     }
-
-    // the form
 
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(@ModelAttribute final User user) {

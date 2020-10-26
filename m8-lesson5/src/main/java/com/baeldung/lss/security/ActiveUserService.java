@@ -15,16 +15,15 @@ public class ActiveUserService {
     @Autowired
     private SessionRegistry sessionRegistry;
 
-    // API
 
-    public final List<String> getActiveUsers() { // @formatter:off
+    public final List<String> getActiveUsers() {
         final List<Object> principals = sessionRegistry.getAllPrincipals();
         final User[] users = principals.toArray(new User[principals.size()]);
-        
+
         return Arrays.stream(users)
                 .filter(u -> !sessionRegistry.getAllSessions(u, false).isEmpty())
                 .map(u -> u.getUsername())
                 .collect(Collectors.toList());
-    } // @formatter:on
+    }
 
 }
