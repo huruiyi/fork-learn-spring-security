@@ -23,8 +23,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    //
-
     @RequestMapping
     public ModelAndView list() {
         Iterable<User> users = this.userRepository.findAll();
@@ -52,8 +50,7 @@ public class UserController {
 
     @RequestMapping(value = "delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id) {
-        this.userRepository.findById(id)
-            .ifPresent(user -> this.userRepository.delete(user));
+        this.userRepository.findById(id)            .ifPresent(user -> this.userRepository.delete(user));
         return new ModelAndView("redirect:/user/");
     }
 
@@ -61,8 +58,6 @@ public class UserController {
     public ModelAndView modifyForm(@PathVariable("id") User user) {
         return new ModelAndView("tl/form", "user", user);
     }
-
-    // the form
 
     @RequestMapping(params = "form", method = RequestMethod.GET)
     //@PreAuthorize("isAuthenticated()")

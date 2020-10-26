@@ -22,8 +22,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    //
-
     @RequestMapping
     public ModelAndView list() {
         Iterable<User> users = this.userRepository.findAll();
@@ -40,7 +38,7 @@ public class UserController {
         if (result.hasErrors()) {
             return new ModelAndView("tl/form", "formErrors", result.getAllErrors());
         }
-        if(user.getId() == null) {
+        if (user.getId() == null) {
             redirect.addFlashAttribute("globalMessage", "Successfully created a new user");
         } else {
             redirect.addFlashAttribute("globalMessage", "Successfully updated existing user");
@@ -51,8 +49,7 @@ public class UserController {
 
     @RequestMapping(value = "delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id) {
-        this.userRepository.findById(id)
-            .ifPresent(user -> this.userRepository.delete(user));
+        this.userRepository.findById(id).ifPresent(user -> this.userRepository.delete(user));
         return new ModelAndView("redirect:/user/");
     }
 
@@ -60,8 +57,6 @@ public class UserController {
     public ModelAndView modifyForm(@PathVariable("id") User user) {
         return new ModelAndView("tl/form", "user", user);
     }
-
-    // the form
 
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(@ModelAttribute User user) {

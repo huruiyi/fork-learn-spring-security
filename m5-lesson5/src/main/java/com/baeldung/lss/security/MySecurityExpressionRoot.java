@@ -15,18 +15,14 @@ public class MySecurityExpressionRoot extends SecurityExpressionRoot implements 
         super(authentication);
     }
 
-    //
-
     public boolean isAdmin() {
         if (!(getPrincipal() instanceof User)) {
             return false;
         }
         User principal = (User) getPrincipal();
         return principal.getAuthorities()
-            .contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+                .contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
-
-    //
 
     public void setFilterObject(Object filterObject) {
         this.filterObject = filterObject;

@@ -16,8 +16,6 @@ public class Organization {
     @Column(nullable = false, unique = true)
     private String name;
 
-    //
-
     public Organization() {
         super();
     }
@@ -26,8 +24,6 @@ public class Organization {
         super();
         this.name = name;
     }
-
-    //
 
     public Long getId() {
         return id;
@@ -44,8 +40,6 @@ public class Organization {
     public void setName(String name) {
         this.name = name;
     }
-
-    //
 
     @Override
     public String toString() {

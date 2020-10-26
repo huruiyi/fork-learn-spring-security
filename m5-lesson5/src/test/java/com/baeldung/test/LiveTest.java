@@ -15,7 +15,6 @@ public class LiveTest {
     @Test
     public void givenUser_whenGetAllUsers_thenForbidden() {
         final Response response = givenAuth("user", "pass").get(APP_ROOT + "/user");
-
         assertEquals(403, response.getStatusCode());
     }
 
@@ -25,8 +24,6 @@ public class LiveTest {
 
         assertEquals(200, response.getStatusCode());
     }
-
-    //
 
     private final RequestSpecification givenAuth(String username, String password) {
         return RestAssured.given()

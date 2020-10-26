@@ -16,8 +16,6 @@ public class Privilege {
     @Column(nullable = false, unique = true)
     private String name;
 
-    //
-
     public Privilege() {
         super();
     }
@@ -26,8 +24,6 @@ public class Privilege {
         super();
         this.name = name;
     }
-
-    //
 
     public Long getId() {
         return id;
@@ -44,8 +40,6 @@ public class Privilege {
     public void setName(String name) {
         this.name = name;
     }
-
-    //
 
     @Override
     public String toString() {

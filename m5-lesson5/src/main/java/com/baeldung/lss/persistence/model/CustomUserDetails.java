@@ -42,13 +42,10 @@ public class CustomUserDetails implements UserDetails {
     @JoinColumn(name = "organization_id", referencedColumnName = "id")
     private Organization organization;
 
-    //
-
     public CustomUserDetails() {
         super();
     }
 
-    //
     public Long getId() {
         return id;
     }
